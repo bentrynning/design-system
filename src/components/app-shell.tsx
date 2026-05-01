@@ -9,43 +9,32 @@ import { SidebarProvider, Sidebar, SidebarTrigger, type SidebarProviderProps } f
  *
  * Structure:
  *   AppShell
- *   ├── AppShellSidebar   (left sidebar, optional)
+ *   ├── AppShellSidebar   (left sidebar)
  *   └── AppShellMain
- *       ├── AppShellHeader  (top bar with breadcrumb + actions)
+ *       ├── AppShellHeader  (sticky top bar)
  *       └── AppShellContent (scrollable page area)
  *
  * @example
- * // Basic wiring
  * <AppShell>
  *   <AppShellSidebar>
  *     <SidebarHeader>…logo…</SidebarHeader>
- *     <SidebarContent>
- *       <SidebarNav sections={nav} />
- *     </SidebarContent>
+ *     <SidebarContent><SidebarNav sections={nav} /></SidebarContent>
  *     <SidebarFooter>…user…</SidebarFooter>
  *   </AppShellSidebar>
- *
  *   <AppShellMain>
  *     <AppShellHeader>
+ *       <AppShellSidebarTrigger />
  *       <Breadcrumb>…</Breadcrumb>
  *       <div className="ml-auto flex gap-2">…actions…</div>
  *     </AppShellHeader>
- *     <AppShellContent>
- *       {children}
- *     </AppShellContent>
+ *     <AppShellContent>{children}</AppShellContent>
  *   </AppShellMain>
  * </AppShell>
  */
 
-// ─── AppShell ─────────────────────────────────────────────────────────────────
-
-export interface AppShellProps extends React.HTMLAttributes<HTMLDivElement> {
-  /** Props forwarded to the internal SidebarProvider. */
+export interface AppShellProps extends React.ComponentProps<'div'> {
   sidebarProviderProps?: Omit<SidebarProviderProps, 'children'>
-  /**
-   * When true, omits the SidebarProvider wrapper.
-   * Use this if you manage SidebarProvider yourself at a higher level.
-   */
+  /** Skip the internal SidebarProvider when you manage it yourself. */
   noSidebarProvider?: boolean
 }
 
@@ -74,57 +63,28 @@ export function AppShell({
   )
 }
 
-// ─── AppShellSidebar ──────────────────────────────────────────────────────────
-
-export interface AppShellSidebarProps
-  extends Omit<React.ComponentPropsWithoutRef<typeof Sidebar>, 'children'> {
-  children: React.ReactNode
-}
-
 /** Drop-in slot for the Sidebar inside AppShell. */
-export function AppShellSidebar({ children, ...props }: AppShellSidebarProps) {
-  return (
-    <Sidebar {...props}>
-      {children}
-    </Sidebar>
-  )
+export function AppShellSidebar(props: React.ComponentProps<typeof Sidebar>) {
+  return <Sidebar {...props} />
 }
 
-// ─── AppShellMain ─────────────────────────────────────────────────────────────
-
-/**
- * The main content column (everything right of the sidebar).
- * Grows to fill remaining space and establishes its own scroll context.
- */
-export const AppShellMain = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
-  ({ className, ...props }, ref) => (
+/** The main content column — grows to fill space, owns its own scroll context. */
+export function AppShellMain({ ref, className, ...props }: React.ComponentProps<'div'>) {
+  return (
     <div
       ref={ref}
       className={cn('flex flex-1 flex-col min-w-0 overflow-hidden', className)}
       {...props}
     />
   )
-)
-AppShellMain.displayName = 'AppShellMain'
-
-// ─── AppShellHeader ───────────────────────────────────────────────────────────
+}
 
 /**
  * Sticky top bar inside AppShellMain.
- * Typically contains: SidebarTrigger, Breadcrumb, and action buttons.
- *
- * @example
- * <AppShellHeader>
- *   <SidebarTrigger />
- *   <Separator orientation="vertical" className="h-4 mx-1" />
- *   <Breadcrumb>…</Breadcrumb>
- *   <div className="ml-auto flex items-center gap-2">
- *     <Button size="sm">New post</Button>
- *   </div>
- * </AppShellHeader>
+ * Typically: SidebarTrigger · Separator · Breadcrumb · actions.
  */
-export const AppShellHeader = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
-  ({ className, ...props }, ref) => (
+export function AppShellHeader({ ref, className, ...props }: React.ComponentProps<'header'>) {
+  return (
     <header
       ref={ref}
       className={cn(
@@ -135,26 +95,18 @@ export const AppShellHeader = React.forwardRef<HTMLDivElement, React.HTMLAttribu
       {...props}
     />
   )
-)
-AppShellHeader.displayName = 'AppShellHeader'
+}
 
-// ─── AppShellContent ──────────────────────────────────────────────────────────
-
-/**
- * Scrollable page content area. Pad as needed for your layout.
- */
-export const AppShellContent = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
-  ({ className, ...props }, ref) => (
+/** Scrollable page content area. */
+export function AppShellContent({ ref, className, ...props }: React.ComponentProps<'main'>) {
+  return (
     <main
       ref={ref}
       className={cn('flex-1 overflow-y-auto p-6', className)}
       {...props}
     />
   )
-)
-AppShellContent.displayName = 'AppShellContent'
+}
 
-// ─── AppShellTrigger ──────────────────────────────────────────────────────────
-
-/** Convenience re-export of SidebarTrigger for use inside AppShellHeader. */
+/** Re-export of SidebarTrigger for use inside AppShellHeader. */
 export { SidebarTrigger as AppShellSidebarTrigger }

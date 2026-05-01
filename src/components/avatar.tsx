@@ -27,49 +27,44 @@ const avatarVariants = cva(
  *   <AvatarImage src={user.avatarUrl} alt={user.name} />
  *   <AvatarFallback>JD</AvatarFallback>
  * </Avatar>
- *
- * <Avatar size="lg">
- *   <AvatarFallback>AB</AvatarFallback>
- * </Avatar>
  */
-const Avatar = React.forwardRef<
-  React.ElementRef<typeof AvatarPrimitive.Root>,
-  React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Root> & VariantProps<typeof avatarVariants>
->(({ className, size, ...props }, ref) => (
-  <AvatarPrimitive.Root
-    ref={ref}
-    className={cn(avatarVariants({ size }), className)}
-    {...props}
-  />
-))
-Avatar.displayName = AvatarPrimitive.Root.displayName
+function Avatar({
+  ref,
+  className,
+  size,
+  ...props
+}: React.ComponentProps<typeof AvatarPrimitive.Root> & VariantProps<typeof avatarVariants>) {
+  return (
+    <AvatarPrimitive.Root
+      ref={ref}
+      className={cn(avatarVariants({ size }), className)}
+      {...props}
+    />
+  )
+}
 
-const AvatarImage = React.forwardRef<
-  React.ElementRef<typeof AvatarPrimitive.Image>,
-  React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Image>
->(({ className, ...props }, ref) => (
-  <AvatarPrimitive.Image
-    ref={ref}
-    className={cn('aspect-square h-full w-full object-cover', className)}
-    {...props}
-  />
-))
-AvatarImage.displayName = AvatarPrimitive.Image.displayName
+function AvatarImage({ ref, className, ...props }: React.ComponentProps<typeof AvatarPrimitive.Image>) {
+  return (
+    <AvatarPrimitive.Image
+      ref={ref}
+      className={cn('aspect-square h-full w-full object-cover', className)}
+      {...props}
+    />
+  )
+}
 
-const AvatarFallback = React.forwardRef<
-  React.ElementRef<typeof AvatarPrimitive.Fallback>,
-  React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Fallback>
->(({ className, ...props }, ref) => (
-  <AvatarPrimitive.Fallback
-    ref={ref}
-    className={cn(
-      'flex h-full w-full items-center justify-center rounded-full',
-      'bg-muted text-muted-foreground font-medium',
-      className
-    )}
-    {...props}
-  />
-))
-AvatarFallback.displayName = AvatarPrimitive.Fallback.displayName
+function AvatarFallback({ ref, className, ...props }: React.ComponentProps<typeof AvatarPrimitive.Fallback>) {
+  return (
+    <AvatarPrimitive.Fallback
+      ref={ref}
+      className={cn(
+        'flex h-full w-full items-center justify-center rounded-full',
+        'bg-muted text-muted-foreground font-medium',
+        className
+      )}
+      {...props}
+    />
+  )
+}
 
 export { Avatar, AvatarImage, AvatarFallback }

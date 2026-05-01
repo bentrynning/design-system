@@ -27,25 +27,23 @@ const TooltipProvider = TooltipPrimitive.Provider
 const Tooltip         = TooltipPrimitive.Root
 const TooltipTrigger  = TooltipPrimitive.Trigger
 
-const TooltipContent = React.forwardRef<
-  React.ElementRef<typeof TooltipPrimitive.Content>,
-  React.ComponentPropsWithoutRef<typeof TooltipPrimitive.Content>
->(({ className, sideOffset = 6, ...props }, ref) => (
-  <TooltipPrimitive.Portal>
-    <TooltipPrimitive.Content
-      ref={ref}
-      sideOffset={sideOffset}
-      className={cn(
-        'z-50 overflow-hidden rounded-md bg-foreground px-3 py-1.5',
-        'text-xs font-medium text-background',
-        'animate-[ds-zoom-in_0.1s_ease-out]',
-        className
-      )}
-      {...props}
-    />
-  </TooltipPrimitive.Portal>
-))
-TooltipContent.displayName = TooltipPrimitive.Content.displayName
+function TooltipContent({ ref, className, sideOffset = 6, ...props }: React.ComponentProps<typeof TooltipPrimitive.Content>) {
+  return (
+    <TooltipPrimitive.Portal>
+      <TooltipPrimitive.Content
+        ref={ref}
+        sideOffset={sideOffset}
+        className={cn(
+          'z-50 overflow-hidden rounded-md bg-foreground px-3 py-1.5',
+          'text-xs font-medium text-background',
+          'animate-[ds-zoom-in_0.1s_ease-out]',
+          className
+        )}
+        {...props}
+      />
+    </TooltipPrimitive.Portal>
+  )
+}
 
 /** One-liner tooltip: wraps a single child without boilerplate. */
 function SimpleTooltip({
@@ -56,7 +54,7 @@ function SimpleTooltip({
 }: {
   children: React.ReactNode
   content: React.ReactNode
-  side?: React.ComponentPropsWithoutRef<typeof TooltipPrimitive.Content>['side']
+  side?: React.ComponentProps<typeof TooltipPrimitive.Content>['side']
   delayDuration?: number
 }) {
   return (
