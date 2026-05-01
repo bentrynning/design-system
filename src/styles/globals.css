@@ -1,5 +1,14 @@
 @import "tailwindcss";
 
+/*
+  Tell Tailwind where to scan for class names.
+  This is required in two scenarios:
+    1. The workshop (Vite root = workshop/, so ../src/ is outside the default scan boundary)
+    2. Consuming projects that @import this CSS — Tailwind scans the installed package
+       source so all component variant classes are guaranteed to be generated.
+*/
+@source "../";
+
 /* ─────────────────────────────────────────────────────────────────────────────
    DESIGN SYSTEM — Token mapping
    Maps semantic CSS variable names → Tailwind utility classes.
@@ -86,12 +95,12 @@
   --accent-foreground:    oklch(0.200 0.006 264);
 
   /* Semantic status */
-  --destructive:            oklch(0.535 0.185 21);
-  --destructive-foreground: oklch(0.985 0.001 21);
-  --success:                oklch(0.545 0.135 145);
-  --success-foreground:     oklch(0.985 0.001 145);
-  --warning:                oklch(0.700 0.145 68);
-  --warning-foreground:     oklch(0.200 0.008 68);
+  --destructive:            oklch(0.568 0.220 25);
+  --destructive-foreground: oklch(0.985 0.001 25);
+  --success:                oklch(0.555 0.160 150);
+  --success-foreground:     oklch(0.985 0.001 150);
+  --warning:                oklch(0.720 0.180 60);
+  --warning-foreground:     oklch(0.200 0.010 60);
 
   /* Chrome */
   --border: oklch(0.900 0.004 264);
@@ -137,13 +146,13 @@
   --accent:               oklch(0.200 0.006 264);
   --accent-foreground:    oklch(0.975 0.002 264);
 
-  /* Semantic status — same hues, adjust for dark bg contrast */
-  --destructive:            oklch(0.580 0.185 21);
-  --destructive-foreground: oklch(0.985 0.001 21);
-  --success:                oklch(0.580 0.135 145);
-  --success-foreground:     oklch(0.985 0.001 145);
-  --warning:                oklch(0.720 0.145 68);
-  --warning-foreground:     oklch(0.200 0.008 68);
+  /* Semantic status — same hues, higher lightness + chroma for dark bg contrast */
+  --destructive:            oklch(0.635 0.240 25);
+  --destructive-foreground: oklch(0.985 0.001 25);
+  --success:                oklch(0.635 0.185 150);
+  --success-foreground:     oklch(0.985 0.001 150);
+  --warning:                oklch(0.760 0.185 60);
+  --warning-foreground:     oklch(0.200 0.010 60);
 
   /* Chrome */
   --border: oklch(0.225 0.005 264);

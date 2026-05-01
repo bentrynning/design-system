@@ -23,7 +23,10 @@
     "build": "tsup",
     "build:watch": "tsup --watch",
     "typecheck": "tsc --noEmit",
-    "lint": "tsc --noEmit"
+    "lint": "tsc --noEmit",
+    "workshop": "vite --config workshop/vite.config.ts",
+    "workshop:build": "vite build --config workshop/vite.config.ts",
+    "workshop:preview": "vite preview --config workshop/vite.config.ts"
   },
   "dependencies": {
     "@radix-ui/react-avatar": "^1.1.0",
@@ -55,12 +58,16 @@
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
+    "@tailwindcss/vite": "^4.2.4",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@vitejs/plugin-react": "^6.0.1",
+    "lucide-react": "^1.14.0",
     "react": "^19",
     "react-dom": "^19",
     "tailwindcss": "^4",
     "tsup": "^8",
-    "typescript": "^5"
+    "typescript": "^5",
+    "vite": "^8.0.10"
   }
 }

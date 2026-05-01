@@ -14,7 +14,45 @@ A professional, minimalistic component library for **dashboards, CMS interfaces,
 
 ---
 
-## Setup
+## Workshop (component browser)
+
+A lightweight dev tool for browsing and testing all components. No Storybook — just Vite + React.
+
+```bash
+bun run workshop        # starts at http://localhost:6006
+bun run workshop:build  # static build of the workshop
+```
+
+The workshop lives in `workshop/`. Adding a new story:
+
+1. Create `workshop/src/stories/my-component.tsx`
+2. Export `meta` (a `StoryMeta`) and a default function component
+3. Register it in `workshop/src/registry.ts`
+
+```tsx
+// workshop/src/stories/my-component.tsx
+import { MyComponent } from '@/components/my-component'
+import { Story, Variant } from '../components/story'
+import type { StoryMeta } from '../components/story'
+
+export const meta: StoryMeta = {
+  title: 'MyComponent',
+  category: 'Primitives',
+  description: 'What this component does.',
+}
+
+export default function MyComponentStory() {
+  return (
+    <Story meta={meta}>
+      <Variant title="Default">
+        <MyComponent />
+      </Variant>
+    </Story>
+  )
+}
+```
+
+---
 
 ### 1. Install
 

@@ -21,7 +21,8 @@ const buttonVariants = cva(
     'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background',
     'disabled:pointer-events-none disabled:opacity-40',
     'select-none cursor-pointer',
-    '[&_svg]:pointer-events-none [&_svg]:shrink-0',
+    // Icon sizing — controlled by the button so callers don't have to repeat it.
+    '[&_svg]:pointer-events-none [&_svg]:shrink-0 [&_svg]:size-4',
   ],
   {
     variants: {
@@ -40,11 +41,11 @@ const buttonVariants = cva(
           'text-foreground underline-offset-4 hover:underline p-0 h-auto',
       },
       size: {
-        sm:        'h-8 px-3 text-xs rounded',
+        sm:        'h-8 px-3 text-xs rounded [&_svg]:size-3.5',
         md:        'h-9 px-4',
         lg:        'h-10 px-6 text-base',
         icon:      'h-9 w-9 p-0',
-        'icon-sm': 'h-7 w-7 p-0 text-xs rounded',
+        'icon-sm': 'h-7 w-7 p-0 text-xs rounded [&_svg]:size-3.5',
       },
     },
     defaultVariants: {

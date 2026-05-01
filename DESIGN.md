@@ -143,6 +143,16 @@ Use `<Badge variant="...">` to represent states:
 - Pending / review → `warning`
 - Error / failed / blocked → `destructive`
 
+### Semantic color rule — tinted vs solid surfaces
+The `*-foreground` tokens (`--destructive-foreground`, `--success-foreground`, `--warning-foreground`) are designed for **solid fill** backgrounds only (e.g. a filled button or solid chip where the background IS the semantic color). They must not be used on tinted surfaces.
+
+| Surface type | Text class to use |
+|---|---|
+| Solid background: `bg-warning` | `text-warning-foreground` |
+| Tinted background: `bg-warning/10` | `text-warning` (the color itself) |
+
+This follows the shadcn/ui principle: use the semantic color directly as text when the background is a subtle tint. It works in both light and dark mode because the semantic colors are calibrated to be readable against both light and dark backgrounds.
+
 ---
 
 ## What this system is NOT

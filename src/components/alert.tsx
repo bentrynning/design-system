@@ -30,14 +30,17 @@ const alertVariants = cva(
   {
     variants: {
       variant: {
+        // Neutral — card surface, foreground text
         default:
-          'border-border bg-card text-foreground [&>svg]:text-foreground',
+          'border-border bg-card text-foreground [&>svg]:text-muted-foreground',
+        // Tinted status variants — shadcn principle: use the semantic color directly
+        // for text on tinted surfaces. The *-foreground tokens are for solid fills only.
         destructive:
-          'border-destructive/30 bg-destructive/10 text-destructive [&>svg]:text-destructive',
+          'border-destructive/50 bg-destructive/10 text-destructive [&>svg]:text-destructive',
         success:
-          'border-success/30 bg-success/10 text-success [&>svg]:text-success',
+          'border-success/50 bg-success/10 text-success [&>svg]:text-success',
         warning:
-          'border-warning/30 bg-warning/15 text-warning-foreground [&>svg]:text-warning-foreground',
+          'border-warning/50 bg-warning/10 text-warning [&>svg]:text-warning',
       },
     },
     defaultVariants: { variant: 'default' },
@@ -74,7 +77,7 @@ function AlertDescription({ ref, className, ...props }: React.ComponentProps<'di
   return (
     <div
       ref={ref}
-      className={cn('text-sm leading-relaxed [&_p]:leading-relaxed', className)}
+      className={cn('text-sm leading-relaxed opacity-85 [&_p]:leading-relaxed', className)}
       {...props}
     />
   )

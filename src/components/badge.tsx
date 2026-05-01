@@ -33,12 +33,14 @@ const badgeVariants = cva(
           'border-transparent bg-secondary text-secondary-foreground',
         outline:
           'border-border bg-transparent text-foreground',
+        // Tinted status badges: semantic color for text (NOT *-foreground).
+        // bg at /10 + border at /30 matches the Alert tint pattern.
         destructive:
-          'border-transparent bg-destructive/15 text-destructive border-destructive/20',
+          'bg-destructive/10 text-destructive border-destructive/30',
         success:
-          'border-transparent bg-success/15 text-success border-success/20',
+          'bg-success/10 text-success border-success/30',
         warning:
-          'border-transparent bg-warning/15 text-warning-foreground border-warning/20',
+          'bg-warning/10 text-warning border-warning/30',
       },
     },
     defaultVariants: {
