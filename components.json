@@ -1,0 +1,135 @@
+{
+  "$schema": "https://ui.shadcn.com/schema.json",
+  "name": "design-system",
+  "version": "0.1.0",
+  "description": "Professional, minimalistic design system for dashboards, CMS, and admin interfaces.",
+  "style": "minimal",
+  "tailwind": {
+    "version": 4,
+    "cssFile": "src/styles/globals.css"
+  },
+  "packageImport": "design-system",
+  "agents": {
+    "primaryDoc": "AGENTS.md",
+    "designDoc": "DESIGN.md"
+  },
+  "components": {
+    "alert": {
+      "import": "import { Alert, AlertTitle, AlertDescription } from 'design-system'",
+      "variants": ["default", "destructive", "success", "warning"],
+      "description": "Inline feedback message with optional icon slot."
+    },
+    "app-shell": {
+      "import": "import { AppShell, AppShellSidebar, AppShellMain, AppShellHeader, AppShellContent, AppShellSidebarTrigger } from 'design-system'",
+      "description": "Full-page admin layout. Wraps Sidebar + main content area. Includes SidebarProvider internally."
+    },
+    "avatar": {
+      "import": "import { Avatar, AvatarImage, AvatarFallback } from 'design-system'",
+      "sizes": ["xs", "sm", "md", "lg", "xl"],
+      "description": "User avatar with image and initials fallback."
+    },
+    "badge": {
+      "import": "import { Badge } from 'design-system'",
+      "variants": ["default", "secondary", "outline", "destructive", "success", "warning"],
+      "description": "Status pill for tags, states, and counts."
+    },
+    "breadcrumb": {
+      "import": "import { Breadcrumb, BreadcrumbList, BreadcrumbItem, BreadcrumbLink, BreadcrumbPage, BreadcrumbSeparator, BreadcrumbEllipsis } from 'design-system'",
+      "description": "Navigation trail. BreadcrumbPage marks the current non-link page."
+    },
+    "button": {
+      "import": "import { Button } from 'design-system'",
+      "variants": ["default", "secondary", "outline", "ghost", "destructive", "link"],
+      "sizes": ["sm", "md", "lg", "icon", "icon-sm"],
+      "props": {
+        "loading": "boolean — shows spinner, disables button",
+        "asChild": "boolean — renders as child element via Radix Slot"
+      },
+      "description": "Primary interactive element. Use `default` for one primary action per page."
+    },
+    "card": {
+      "import": "import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from 'design-system'",
+      "description": "Bordered surface for grouping related content."
+    },
+    "checkbox": {
+      "import": "import { Checkbox } from 'design-system'",
+      "description": "Accessible checkbox. Supports checked / unchecked / indeterminate."
+    },
+    "command": {
+      "import": "import { Command, CommandInput, CommandList, CommandEmpty, CommandGroup, CommandItem, CommandSeparator, CommandShortcut } from 'design-system'",
+      "description": "Command palette built on cmdk. Typically displayed inside a Dialog."
+    },
+    "dialog": {
+      "import": "import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogFooter, DialogTitle, DialogDescription, DialogClose } from 'design-system'",
+      "description": "Modal dialog. Use sparingly — prefer Sheet for side panels and inline editing for quick edits."
+    },
+    "dropdown-menu": {
+      "import": "import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuLabel, DropdownMenuShortcut } from 'design-system'",
+      "description": "Context menu / action menu. DropdownMenuItem accepts variant='destructive' for danger actions."
+    },
+    "input": {
+      "import": "import { Input } from 'design-system'",
+      "description": "Text input. Set aria-invalid or data-invalid to trigger error styling."
+    },
+    "label": {
+      "import": "import { Label } from 'design-system'",
+      "props": {
+        "required": "boolean — appends red asterisk"
+      },
+      "description": "Accessible label. Always pair with an input via htmlFor."
+    },
+    "progress": {
+      "import": "import { Progress } from 'design-system'",
+      "props": {
+        "value": "number 0–100"
+      },
+      "description": "Determinate progress bar."
+    },
+    "scroll-area": {
+      "import": "import { ScrollArea } from 'design-system'",
+      "description": "Custom-styled scrollable container."
+    },
+    "select": {
+      "import": "import { Select, SelectTrigger, SelectValue, SelectContent, SelectItem, SelectGroup, SelectLabel, SelectSeparator } from 'design-system'",
+      "description": "Accessible select dropdown."
+    },
+    "separator": {
+      "import": "import { Separator } from 'design-system'",
+      "props": {
+        "orientation": "horizontal | vertical"
+      },
+      "description": "Visual divider."
+    },
+    "sheet": {
+      "import": "import { Sheet, SheetTrigger, SheetContent, SheetHeader, SheetTitle, SheetDescription, SheetFooter, SheetClose } from 'design-system'",
+      "props": {
+        "side": "right | left | top | bottom"
+      },
+      "description": "Slide-in panel. Prefer over Dialog for filters, detail views, and mobile navigation."
+    },
+    "sidebar": {
+      "import": "import { SidebarProvider, useSidebar, Sidebar, SidebarHeader, SidebarContent, SidebarFooter, SidebarNavSection, SidebarNavItem, SidebarTrigger, SidebarNav } from 'design-system'",
+      "description": "Collapsible navigation sidebar. SidebarNav accepts NavSection[] for data-driven nav. State is persisted to localStorage."
+    },
+    "skeleton": {
+      "import": "import { Skeleton } from 'design-system'",
+      "description": "Loading placeholder with shimmer animation. Set className to match the shape of content."
+    },
+    "switch": {
+      "import": "import { Switch } from 'design-system'",
+      "description": "Toggle switch for binary settings."
+    },
+    "table": {
+      "import": "import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell, TableFooter, TableCaption } from 'design-system'",
+      "description": "Data table with responsive overflow scroll wrapper."
+    },
+    "textarea": {
+      "import": "import { Textarea } from 'design-system'",
+      "description": "Multi-line text input, resizes vertically."
+    },
+    "tooltip": {
+      "import": "import { TooltipProvider, Tooltip, TooltipTrigger, TooltipContent, SimpleTooltip } from 'design-system'",
+      "description": "Hover/focus tooltip. Use SimpleTooltip for one-liner convenience."
+    }
+  }
+}
