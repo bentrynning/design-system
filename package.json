@@ -1,5 +1,5 @@
 {
-  "name": "design-system",
+  "name": "@bentrynning/design-system",
   "version": "0.1.0",
   "description": "A professional, minimalistic design system for dashboards, CMS, and admin interfaces.",
   "type": "module",
