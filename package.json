@@ -10,17 +10,17 @@
       "import": "./dist/index.js",
       "require": "./dist/index.cjs"
     },
-    "./styles": "./src/styles/globals.css"
+    "./styles": "./dist/styles/globals.css",
+    "./tokens": "./dist/styles/tokens.css"
   },
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "files": [
-    "dist",
-    "src/styles"
+    "dist"
   ],
   "scripts": {
-    "build": "tsup",
+    "build": "tsup && cp -r src/styles dist/styles",
     "build:watch": "tsup --watch",
     "typecheck": "tsc --noEmit",
     "lint": "tsc --noEmit",
